@@ -1,1 +1,63 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>identglue example</title>
+	<script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <main>
+      <h1>Identglue jquery example</h1>
+      <section>
+        <h2>Stationary</h2>
+
+        <pre id="status">Status: loading</pre>
+        <pre id="browser-info">Browser info: </pre>
+      </section>
+
+      <section>
+        <h2>Mobile</h2>
+
+        <strong>Mit der Online-Ausweisfunktion anmelden:</strong><br />
+        <a
+          id="mobile_a"
+          class="btn"
+          href="eid://127.0.0.1:24727/eID-Client?tcTokenURL=https%3A%2F%2Fexample.com%2Ftctoken"
+          >Ausweis-App starten</a
+        >
+        <p id="eid-install-app-hint" hidden>
+          Installieren Sie zuerst die AusweisApp2 auf Ihrem Gerät:<br />
+          <a
+            href="https://apps.apple.com/us/app/ausweisapp2/id948660805?l=de&ls=1"
+            >App Store</a
+          >
+          <a
+            href="https://play.google.com/store/apps/details?id=com.governikus.ausweisapp2"
+            >Google Play</a
+          >
+        </p>
+      </section>
+    </main>
+    <div class="footer">
+      <a
+        target="_blank"
+        class="url"
+        href="https://github.com/Governikus/identglue"
+        >Github</a
+      >
+      <a
+        target="_blank"
+        class="url"
+        href="https://www.npmjs.com/package/@ausweisapp2/identglue"
+        >npm</a
+      >
+    </div>
+	
+
+
+<script src="https://unpkg.com/@ausweisapp2/identglue@1.0.14/dist/identglue.umd.js"></script>
+  </body>
+</html>
