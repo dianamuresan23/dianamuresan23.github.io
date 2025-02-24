@@ -8,7 +8,7 @@ const browserInfo = window.navigator.userAgent;
 document.getElementById("browser-info").innerText = "Browser: " + browserInfo.concat(" ", window.navigator.vendor);
  
 
-if (isMobile === true) {
+if (isMobile) {
 	document.getElementById("desktop_section").hidden = true;
 	document.getElementById("mobile_section").hidden = false;
 
@@ -16,7 +16,7 @@ if (isMobile === true) {
 	AusweisApp2.observeEIDLink(mobileElem, () => {
 		console.log("App is not installed");
 	  
-		document.getElementById("eid-install-app-hint").hidden = true;
+		document.getElementById("eid-install-app-hint").hidden = false;
 	});
 } else {
 	document.getElementById("mobile_section").hidden = true;
