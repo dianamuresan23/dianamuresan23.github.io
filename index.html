@@ -10,22 +10,28 @@
 
   <body>
     <main>
-      <h1>Identglue jquery example</h1>
+      <h1>Identglue example</h1>
       <section>
-        <h2>Stationary</h2>
+        <h2>Stationary (Desktop)</h2>
 
         <pre id="status">Status: loading</pre>
         <pre id="browser-info">Browser info: </pre>
+		
+		 <a
+          id="desktop_a"
+          class="btn"
+          href="http://127.0.0.1:24727/eID-Client?ShowUI"
+          >Ausweis-App starten</a
+        > 
       </section>
 
       <section>
         <h2>Mobile</h2>
 
-        <strong>Mit der Online-Ausweisfunktion anmelden:</strong><br />
         <a
           id="mobile_a"
           class="btn"
-          href="eid://127.0.0.1:24727/eID-Client?tcTokenURL=https%3A%2F%2Fexample.com%2Ftctoken"
+          href="eid://127.0.0.1:24727/eID-Client"
           >Ausweis-App starten</a
         >
         <p id="eid-install-app-hint" hidden>
@@ -41,22 +47,6 @@
         </p>
       </section>
     </main>
-    <div class="footer">
-      <a
-        target="_blank"
-        class="url"
-        href="https://github.com/Governikus/identglue"
-        >Github</a
-      >
-      <a
-        target="_blank"
-        class="url"
-        href="https://www.npmjs.com/package/@ausweisapp2/identglue"
-        >npm</a
-      >
-    </div>
-	
-
 
 <script src="https://unpkg.com/@ausweisapp2/identglue@1.0.14/dist/identglue.umd.js"></script>
   </body>
