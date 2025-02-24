@@ -11,31 +11,40 @@
   <body>
     <main>
       <h1>Identglue example</h1>
-      <section>
-        <h2>Stationary (Desktop)</h2>
+	  <div>The library can detect if you are on mobile or dekstop:</div>
+	  </br>
+	  <div id="platform_type">Platform:</div>
+	  </br>
+	  <div id="browser-info">Browser info: </div>
 
-        <pre id="status">Status: loading</pre>
-        <pre id="browser-info">Browser info: </pre>
+      <section id="desktop_section">
+        <h2>Desktop</h2>
+		<div>A request is being performed every few seconds to check if you have the Ausweiss App installed and opened.</div>
+		</br>
+        <div id="status">Status: loading</div>
+		</br>
+
+		<div>The status can have one of the following values:</div>
+		<ul>
+			<li>unavailable: The app is not opened</li>
+			<li>available: The app is opened</li>
+			<li>safari: If you are on safari browser and the library cannot detect if the app is opened or not</li>
+		</ul>
 		
-		 <a
-          id="desktop_a"
-          class="btn"
-          href="http://127.0.0.1:24727/eID-Client?ShowUI"
-          >Ausweis-App starten</a
-        > 
+		
       </section>
 
-      <section>
+      <section id="mobile_section">
         <h2>Mobile</h2>
-
+		<div>On mobile platform we cannot detect if you have the app installed or not. We are checking to see if the app opens when you click the link below. If you don't have the app installed then we will show you the download links.</div>
         <a
           id="mobile_a"
           class="btn"
           href="eid://127.0.0.1:24727/eID-Client"
-          >Ausweis-App starten</a
+          >Open Ausweis-App</a
         >
         <p id="eid-install-app-hint" hidden>
-          Installieren Sie zuerst die AusweisApp2 auf Ihrem Gerät:<br />
+          Install links:<br />
           <a
             href="https://apps.apple.com/us/app/ausweisapp2/id948660805?l=de&ls=1"
             >App Store</a
