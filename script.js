@@ -28,6 +28,12 @@ if (isMobile) {
 			if (status.details) {
 				s += `\nfound ${status.details.name}, version ${status.details.implementationVersion} by ${status.details.implementationVendor}`;
 			}
+			
+			if (s.includes("available")) {
+				document.getElementById("desktop_a").disabled = false;
+			} else {
+				document.getElementById("desktop_a").disabled = true;
+			}
 			if (s.includes("safari")) {
 				s = "safari: we cannot detect if you have the app opened or not";
 			}
