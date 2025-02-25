@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>identglue example</title>
-	<script src="script.js" defer></script>
   </head>
 
   <body>
@@ -15,11 +14,11 @@
 	  </br>
 	  <div id="platform_type">Platform:</div>
 	  </br>
-	  <div id="browser-info">Browser info: </div>
+	  <div id="browser-info">Are you on Safari? </div>
 
       <section id="desktop_section">
         <h2>Desktop</h2>
-		<div>A request is being performed every few seconds to check if you have the Ausweiss App installed and opened.</div>
+		<div>A request is being performed every few seconds to check if you have the Ausweis App installed and opened.</div>
 		</br>
         <div id="status">Status: loading</div>
 		</br>
@@ -64,6 +63,46 @@
       </section>
     </main>
 
-<script src="https://unpkg.com/@ausweisapp2/identglue@1.0.14/dist/identglue.umd.js"></script>
+	<script src="https://unpkg.com/@ausweisapp2/identglue@1.0.14/dist/identglue.umd.js"></script>
+	<script>
+		const isMobile = AusweisApp2.isMobile();
+		document.getElementById("platform_type").innerText = isMobile ? "Platform: You are on mobile" : "Platform: You are on desktop";
+
+		const isSafari = AusweisApp2.isSafari();
+		document.getElementById("browser-info").innerText = "Are you on Safari? " + (isSafari ? "Yes" : "No");
+ 
+		if (isMobile) {
+			document.getElementById("desktop_section").hidden = true;
+			document.getElementById("mobile_section").hidden = false;
+
+			const mobileElem = document.getElementById("mobile_a");
+			AusweisApp2.observeEIDLink(mobileElem, () => {
+				document.getElementById("eid-install-app-hint").hidden = false;
+			});
+		} else {
+			document.getElementById("mobile_section").hidden = true;
+			document.getElementById("desktop_section").hidden = false;
+	
+			const observer = new AusweisApp2.StationaryStatusObserver((status) => {
+				let s = "Status: " + status.status;
+				if (status.details) {
+					s += `\nfound ${status.details.name}, version ${status.details.implementationVersion} by ${status.details.implementationVendor}`;
+				}
+			
+				if (s.includes("available")) {
+					document.getElementById("desktop_a").disabled = false;
+				} else {
+					document.getElementById("desktop_a").disabled = true;
+				}
+				if (s.includes("safari")) {
+					s += "- we cannot detect if you have the app opened or not";
+				}
+				document.getElementById("status").innerText = s;
+			}
+			);
+	
+			observer.observe();
+		}
+	</script>
   </body>
 </html>
