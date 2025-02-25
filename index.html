@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>identglue example</title>
+	<style>
+		.disabled-link {
+			pointer-events: none;
+		}
+	</style>
   </head>
 
   <body>
@@ -30,7 +35,7 @@
 			<li>safari: If you are on safari browser and the library cannot detect if the app is opened or not</li>
 		</ul>
 		</br>
-		<div>The button below will be enabled/disabled based on the status of the app.</div>
+		<div>The link below will be enabled/disabled based on the status of the app. If you are on Safari it is enabled by default since we cannot detect if you have the app opened or not.</div>
 		</br>
 		 <a
           id="desktop_a"
@@ -42,7 +47,7 @@
 
       <section id="mobile_section">
         <h2>Mobile</h2>
-		<div>On mobile platform we cannot detect if you have the app installed or not. We are checking to see if the app opens when you click the link below. If you don't have the app installed then we will show you the download links.</div>
+		<div>On mobile platform we cannot detect if you have the app installed or not so the link below is always enabled. We are checking to see if the app opens when you click the link. If you don't have the app installed then we will show you the download links.</div>
         <a
           id="mobile_a"
 		  target="_blank"	
@@ -89,14 +94,15 @@
 					s += `\nfound ${status.details.name}, version ${status.details.implementationVersion} by ${status.details.implementationVendor}`;
 				}
 			
-				if (s.includes("available")) {
-					document.getElementById("desktop_a").disabled = false;
-				} else {
-					document.getElementById("desktop_a").disabled = true;
-				}
-				if (s.includes("safari")) {
+				if (status.status === "available") {
+					document.getElementById("desktop_a").classList.remove("disabled-link");
+				} else if (s.status === "safari") {
+					document.getElementById("desktop_a").classList.remove("disabled-link");
 					s += "- we cannot detect if you have the app opened or not";
+				} else {
+					document.getElementById("desktop_a").classList.add("disabled-link");
 				}
+				
 				document.getElementById("status").innerText = s;
 			}
 			);
